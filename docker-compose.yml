@@ -1,0 +1,44 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "Altairis@2026"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Altairis@2026", "-Q", "SELECT 1", "-t", "30"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 30s
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:80"
+    depends_on:
+      - db
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=db;Database=AltairisDB;User Id=sa;Password=Altairis@2026;TrustServerCertificate=True;"
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_URLS: "http://+:80"
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:5000"
+      NEXT_PUBLIC_APP_NAME: "Altairis Backoffice"
+      NODE_ENV: "development"
+    restart: unless-stopped
+
+volumes:
+  sql_data:
