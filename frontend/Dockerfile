@@ -7,6 +7,7 @@ FROM node:lts-alpine3.23 AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+RUN npm install -g npm@latest nodemon
 RUN npm run build
 
 FROM node:lts-alpine3.23 AS runner
