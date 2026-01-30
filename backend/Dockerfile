@@ -13,4 +13,5 @@ RUN dotnet publish "Altairis.Backend.csproj" -c Release -o /app/publish
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+RUN apt-get update && apt-get install -y curl
 ENTRYPOINT ["dotnet", "Altairis.Backend.dll"]
