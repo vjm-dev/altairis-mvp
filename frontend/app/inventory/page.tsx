@@ -38,9 +38,13 @@ export default function InventoryPage() {
     setLoading(true);
     try {
       const data = await inventoryApi.getByHotel(selectedHotel, dateRange.startDate);
-      setInventory(data || []);
+      const inventoryWithDefaults = (data || []).map((item: any) => ({
+        ...item,
+        isAvailable: item.isAvailable ?? true
+      }));
+      setInventory(inventoryWithDefaults);
     } catch (error: any) {
-      console.error(`Error cargando inventario:`, error);
+      console.error(`Error cargando inventario: `, error);
       alert(`Error: ${error.message || 'No se pudo cargar el inventario'}`);
       setInventory([]);
     } finally {
@@ -49,9 +53,17 @@ export default function InventoryPage() {
   }
 
   async function updatePrice(id: number) {
+    const item = inventory.find(item => item.id === id);
+    if (!item) {
+      alert('No se encontró el item del inventario');
+      return;
+    }
+
     try {
       await inventoryApi.updateInventory(id, {
+        totalRooms: item.totalRooms,
         price: parseFloat(editPrice),
+        isAvailable: item.isAvailable,
       });
       loadInventory();
       setEditing(null);
@@ -70,6 +82,7 @@ export default function InventoryPage() {
         inventoryApi.updateInventory(item.id, {
           totalRooms: Math.max(0, item.totalRooms + change),
           price: item.price,
+          isAvailable: item.isAvailable,
         })
       );
       
@@ -84,10 +97,17 @@ export default function InventoryPage() {
   }
 
   async function updateRoomCount(id: number, change: number, currentPrice: number) {
+    const item = inventory.find(item => item.id === id);
+    if (!item) {
+      alert('No se encontró el item del inventario');
+      return;
+    }
+
     try {
       await inventoryApi.updateInventory(id, {
-        totalRooms: Math.max(0, inventory.find(item => item.id === id)?.totalRooms + change),
+        totalRooms: Math.max(0, item.totalRooms + change),
         price: currentPrice,
+        isAvailable: item.isAvailable,
       });
       loadInventory();
     } catch (error: any) {
