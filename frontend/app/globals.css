@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: linear-gradient(#72cbff, #3eb8ff);
   --foreground: #171717;
+  --card-bg: #ffffff;
+  --card-text: #374151;
+  --border-color: #e5e7eb;
+  --header-bg: #ffffff;
+  --footer-bg: #1f2937;
 }
 
 @theme inline {
@@ -14,15 +19,91 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: linear-gradient(#1e3a8a, #1e40af);
+    --foreground: #f3f4f6;
+    --card-bg: #1f2937;
+    --card-text: #f9fafb;
+    --border-color: #374151;
+    --header-bg: #111827;
+    --footer-bg: #0f172a;
   }
 }
 
 body {
-  /* background: var(--background); */
-  /* color: var(--foreground); */
-  background: #808080;
-  color: #494949;
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Segoe UI', Tahoma, Verdana, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+.card {
+  background-color: var(--card-bg);
+  color: var(--card-text);
+  border-color: var(--border-color);
+}
+
+.table {
+  background-color: var(--card-bg);
+  color: var(--card-text);
+}
+
+.table th {
+  background-color: color-mix(in srgb, var(--card-bg) 90%, transparent);
+  color: var(--card-text);
+}
+
+.table tr:hover {
+  background-color: color-mix(in srgb, var(--card-bg) 95%, transparent);
+}
+
+.input, .select, .textarea {
+  background-color: color-mix(in srgb, var(--card-bg) 98%, transparent);
+  color: var(--card-text);
+  border-color: var(--border-color);
+}
+
+.input:focus, .select:focus, .textarea:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.dark\:text-white {
+  color: var(--foreground);
+}
+
+.dark\:bg-gray-800 {
+  background-color: var(--card-bg);
+}
+
+.dark\:border-gray-700 {
+  border-color: var(--border-color);
+}
+
+.dark\:text-gray-300 {
+  color: var(--card-text);
+}
+
+.text-gray-600 {
+  color: #4b5563;
+}
+
+.dark .text-gray-600 {
+  color: #d1d5db;
+}
+
+.text-gray-500 {
+  color: #6b7280;
+}
+
+.dark .text-gray-500 {
+  color: #9ca3af;
+}
+
+.text-gray-700 {
+  color: #374151;
+}
+
+.dark .text-gray-700 {
+  color: #e5e7eb;
 }

@@ -48,7 +48,7 @@ export default function BookingsPage() {
 
       <div className="mb-6">
         <select
-          className="p-3 border rounded-lg"
+          className="p-3 border rounded-lg bg-white dark:bg-gray-500 text-gray-700 dark:text-white"
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -70,8 +70,8 @@ export default function BookingsPage() {
         </div>
       ) : (
         <div className="bg-white rounded-lg shadow overflow-hidden">
-          <table className="min-w-full">
-            <thead className="bg-gray-50">
+          <table className="min-w-full bg-white dark:bg-gray-800">
+            <thead className="bg-gray-50 dark:bg-gray-700">
               <tr>
                 <th className="px-6 py-3 text-left">Nº Reserva</th>
                 <th className="px-6 py-3 text-left">Hotel</th>
@@ -82,9 +82,9 @@ export default function BookingsPage() {
                 <th className="px-6 py-3 text-left">Acciones</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
               {bookings.map((booking) => (
-                <tr key={booking.id} className="hover:bg-gray-50">
+                <tr key={booking.id} className="hover:bg-sky-500/100">
                   <td className="px-6 py-4 font-medium">{booking.bookingNumber}</td>
                   <td className="px-6 py-4">{booking.hotelName}</td>
                   <td className="px-6 py-4">{booking.customerName}</td>
@@ -95,7 +95,7 @@ export default function BookingsPage() {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    €{booking.totalAmount}
+                    €{booking.totalAmount.toFixed(2)}
                   </td>
                   <td className="px-6 py-4">
                     <span className={`px-2 py-1 rounded text-sm ${

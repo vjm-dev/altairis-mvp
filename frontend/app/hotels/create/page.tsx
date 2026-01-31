@@ -45,13 +45,13 @@ export default function CreateHotel() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-6 space-y-4">
+      <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-500 rounded-lg shadow p-6 space-y-4">
         <div>
           <label className="block text-sm font-medium mb-1">Nombre *</label>
           <input
             type="text"
             required
-            className="w-full p-3 border rounded-lg"
+            className="w-full p-3 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             value={formData.name}
             onChange={(e) => setFormData({...formData, name: e.target.value})}
           />
@@ -63,7 +63,7 @@ export default function CreateHotel() {
             <input
               type="text"
               required
-              className="w-full p-3 border rounded-lg"
+              className="w-full p-3 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               value={formData.city}
               onChange={(e) => setFormData({...formData, city: e.target.value})}
             />
@@ -71,7 +71,7 @@ export default function CreateHotel() {
           <div>
             <label className="block text-sm font-medium mb-1">País *</label>
             <select
-              className="w-full p-3 border rounded-lg"
+              className="w-full p-3 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               value={formData.country}
               onChange={(e) => setFormData({...formData, country: e.target.value})}
             >
@@ -87,7 +87,7 @@ export default function CreateHotel() {
           <label className="block text-sm font-medium mb-1">Dirección</label>
           <input
             type="text"
-            className="w-full p-3 border rounded-lg"
+            className="w-full p-3 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             value={formData.address}
             onChange={(e) => setFormData({...formData, address: e.target.value})}
           />
@@ -96,7 +96,7 @@ export default function CreateHotel() {
         <div>
           <label className="block text-sm font-medium mb-1">Categoría (estrellas)</label>
           <select
-            className="w-full p-3 border rounded-lg"
+            className="w-full p-3 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             value={formData.starRating}
             onChange={(e) => setFormData({...formData, starRating: parseInt(e.target.value)})}
           >
@@ -110,7 +110,7 @@ export default function CreateHotel() {
           <button
             type="button"
             onClick={() => router.back()}
-            className="px-4 py-2 border rounded-lg"
+            className="px-4 py-2 border rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
             disabled={loading}
           >
             Cancelar
@@ -120,7 +120,7 @@ export default function CreateHotel() {
             className="bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-800 disabled:opacity-50"
             disabled={loading}
           >
-            {loading ? 'Creando...' : 'Crear Hotel'}
+            {loading ? 'Creando...' : 'Añadir hotel'}
           </button>
         </div>
       </form>

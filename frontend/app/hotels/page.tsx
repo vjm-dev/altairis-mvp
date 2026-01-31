@@ -55,7 +55,7 @@ export default function HotelsPage() {
         <input
           type="text"
           placeholder="Buscar hotel por nombre, ciudad..."
-          className="w-full p-3 border rounded-lg"
+          className="w-full p-3 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -75,39 +75,39 @@ export default function HotelsPage() {
       ) : (
         <>
           <div className="bg-white rounded-lg shadow overflow-hidden">
-            <table className="min-w-full">
-              <thead className="bg-gray-50">
+            <table className="min-w-full bg-white dark:bg-gray-800">
+              <thead className="bg-gray-50 dark:bg-gray-700">
                 <tr>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
+                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300">
                     Nombre
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
+                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300">
                     Ciudad
                   </th>
-                  <th className="px6 py-3 text-left text-sm font-medium text-gray-700">
+                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300">
                     País
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
+                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300">
                     Categoría
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
+                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300">
                     Estado
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
+                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300">
                     Acciones
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                 {hotels.length === 0 ? (
                   <tr>
-                    <td colSpan={6} className="px-6 py-8 text-center text-gray-500">
+                    <td colSpan={6} className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
                       No se encontraron hoteles
                     </td>
                   </tr>
                 ) : (
                   hotels.map((hotel) => (
-                    <tr key={hotel.id} className="hover:bg-gray-50">
+                    <tr key={hotel.id} className="hover:bg-sky-500/100">
                       <td className="px-6 py-4 font-medium">{hotel.name}</td>
                       <td className="px-6 py-4">{hotel.city}</td>
                       <td className="px-6 py-4">{hotel.country}</td>
@@ -148,7 +148,7 @@ export default function HotelsPage() {
             <button
               onClick={() => setPage(p => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="px-4 py-2 border rounded disabled:opacity-50"
+              className="px-4 py-2 border rounded disabled:opacity-50 bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
             >
               Anterior
             </button>
@@ -156,7 +156,7 @@ export default function HotelsPage() {
             <button
               onClick={() => setPage(p => p + 1)}
               disabled={page >= totalPages}
-              className="px-4 py-2 border rounded disabled:opacity-50"
+              className="px-4 py-2 border rounded disabled:opacity-50 bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
             >
               Siguiente
             </button>
