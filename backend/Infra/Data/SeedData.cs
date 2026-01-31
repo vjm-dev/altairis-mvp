@@ -70,14 +70,16 @@ namespace Altairis.Backend.Infra.Data
                                 Name = "Doble Vista Mar",
                                 Description = "Habitación doble con vistas al mar",
                                 Capacity = 2,
-                                BasePrice = 180.00m
+                                BasePrice = 180.00m,
+                                Inventories = GenerateInventory(12, 150.00m, 220.00m)
                             },
                             new RoomType
                             {
                                 Name = "Junior Suite",
                                 Description = "Suite junior con terraza privada",
                                 Capacity = 2,
-                                BasePrice = 320.00m
+                                BasePrice = 320.00m,
+                                Inventories = GenerateInventory(6, 280.00m, 400.00m)
                             }
                         }
                     },
@@ -92,7 +94,26 @@ namespace Altairis.Backend.Infra.Data
                         Phone = "+33 1 40 20 50 60",
                         Email = "paris@altairis.com",
                         StarRating = 5,
-                        IsActive = true
+                        IsActive = true,
+                        RoomTypes = new List<RoomType>
+                        {
+                            new RoomType
+                            {
+                                Name = "Doble Superior",
+                                Description = "Habitación doble con vistas a los Campos Elíseos",
+                                Capacity = 2,
+                                BasePrice = 400.00m,
+                                Inventories = GenerateInventory(8, 350.00m, 500.00m)
+                            },
+                            new RoomType
+                            {
+                                Name = "Suite Presidencial",
+                                Description = "Suite de lujo con jacuzzi",
+                                Capacity = 2,
+                                BasePrice = 800.00m,
+                                Inventories = GenerateInventory(3, 700.00m, 1000.00m)
+                            }
+                        }
                     },
                     new Hotel
                     {
@@ -105,7 +126,26 @@ namespace Altairis.Backend.Infra.Data
                         Phone = "+39 06 678 9012",
                         Email = "rome@altairis.com",
                         StarRating = 4,
-                        IsActive = true
+                        IsActive = true,
+                        RoomTypes = new List<RoomType>
+                        {
+                            new RoomType
+                            {
+                                Name = "Doble Clásica",
+                                Description = "Habitación doble con estilo clásico italiano",
+                                Capacity = 2,
+                                BasePrice = 220.00m,
+                                Inventories = GenerateInventory(10, 180.00m, 280.00m)
+                            },
+                            new RoomType
+                            {
+                                Name = "Suite Familiar",
+                                Description = "Suite familiar para 4 personas",
+                                Capacity = 4,
+                                BasePrice = 450.00m,
+                                Inventories = GenerateInventory(5, 400.00m, 600.00m)
+                            }
+                        }
                     }
                 };
 
