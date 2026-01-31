@@ -14,3 +14,8 @@ docker-compose up --build
    - Frontend: http://localhost:3000
    - Backend API: http://localhost:5000
    - Base de datos SQL Server: localhost:1433
+
+## Demo de datos
+
+Esos datos que se introducen por primera vez del despliegue están en [`backend/Infra/Data/SeedData.cs`](backend/Infra/Data/SeedData.cs)
+
