@@ -2,15 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { hotelApi } from '@/shared/utils/api';
-
-interface Hotel {
-  id: number;
-  name: string;
-  city: string;
-  country: string;
-  starRating: number;
-  isActive: boolean;
-}
+import { Hotel } from '@/shared/interfaces/i_hotel';
 
 export default function HotelsPage() {
   const [hotels, setHotels] = useState<Hotel[]>([]);

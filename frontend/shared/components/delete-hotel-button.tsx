@@ -2,12 +2,7 @@
 
 import { useState } from 'react';
 import { hotelApi } from '@/shared/utils/api';
-
-interface DeleteHotelButtonProps {
-  hotelId: number;
-  hotelName: string;
-  onDeleted: () => void;
-}
+import { DeleteHotelButtonProps } from '@/shared/interfaces/i_deletehotelbutton';
 
 export default function DeleteHotelButton({ hotelId, hotelName, onDeleted }: DeleteHotelButtonProps) {
   const [isDeleting, setIsDeleting] = useState(false);

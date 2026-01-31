@@ -5,27 +5,8 @@ import { hotelApi, roomTypeApi } from '@/shared/utils/api';
 import { useParams } from 'next/navigation';
 import InventoryStats from '@/shared/components/inventory-stats';
 import DeleteHotelButton from '@/shared/components/delete-hotel-button';
-
-interface Hotel {
-  id: number;
-  name: string;
-  address: string;
-  city: string;
-  country: string;
-  starRating: number;
-  phone: string;
-  email: string;
-  isActive: boolean;
-}
-
-interface RoomType {
-  id: number;
-  name: string;
-  description: string;
-  basePrice: number;
-  maxOccupancy: number;
-  hotelId: number;
-}
+import { Hotel } from '@/shared/interfaces/i_hotel';
+import { RoomType } from '@/shared/interfaces/i_roomtype';
 
 export default function HotelDetailPage() {
   const params = useParams();

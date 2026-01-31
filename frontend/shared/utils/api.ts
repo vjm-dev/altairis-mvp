@@ -1,12 +1,6 @@
-const API_BASE = 'http://localhost:5000/api';
+import { ApiError } from "@/shared/interfaces/i_apierror";
 
-interface ApiError {
-  type?: string;
-  title?: string;
-  status?: number;
-  errors?: Record<string, string[]>;
-  traceId?: string;
-}
+const API_BASE = 'http://localhost:5000/api';
 
 export async function fetchApi(endpoint: string, options?: RequestInit) {
   try {

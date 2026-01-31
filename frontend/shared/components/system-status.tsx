@@ -2,12 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { healthCheckService } from '@/shared/utils/health-check';
-
-interface SystemStatusProps {
-  autoRefresh?: boolean;
-  showLastUpdate?: boolean;
-  className?: string;
-}
+import { SystemStatusProps } from '@/shared/interfaces/i_systemstatus';
 
 export default function SystemStatus({
   autoRefresh = true,

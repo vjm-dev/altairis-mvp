@@ -1,10 +1,5 @@
 import { fetchApi } from "@/shared/utils/api";
-
-interface HealthStatus {
-  api: 'connected' | 'disconnected' | 'error';
-  database: 'connected' | 'disconnected' | 'error';
-  lastCheck: Date;
-}
+import { HealthStatus } from "@/shared/interfaces/i_healthstatus";
 
 class HealthCheckService {
   private checkInterval: number = 30000;

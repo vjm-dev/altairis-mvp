@@ -2,10 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { inventoryApi } from '@/shared/utils/api';
-
-interface InventoryStatsProps {
-  hotelId: number;
-}
+import { InventoryStatsProps } from '@/shared/interfaces/i_inventorystats';
 
 export default function InventoryStats({ hotelId }: InventoryStatsProps) {
   const [stats, setStats] = useState<{
