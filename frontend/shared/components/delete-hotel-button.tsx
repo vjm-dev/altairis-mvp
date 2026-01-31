@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { hotelApi } from '@/lib/api';
+import { hotelApi } from '@/shared/utils/api';
 
 interface DeleteHotelButtonProps {
   hotelId: number;

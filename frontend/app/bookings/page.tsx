@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { bookingApi } from '@/lib/api';
+import { bookingApi } from '@/shared/utils/api';
 
 export default function BookingsPage() {
   const [bookings, setBookings] = useState<any[]>([]);

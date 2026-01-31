@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { bookingApi, hotelApi, roomTypeApi, inventoryApi } from '@/lib/api';
+import { bookingApi, hotelApi, roomTypeApi, inventoryApi } from '@/shared/utils/api';
 import { useRouter } from 'next/navigation';
 
 export default function CreateBookingPage() {

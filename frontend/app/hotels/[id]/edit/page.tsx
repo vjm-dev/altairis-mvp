@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { hotelApi } from '@/lib/api';
+import { hotelApi } from '@/shared/utils/api';
 import { useParams, useRouter } from 'next/navigation';
 
 export default function EditHotelPage() {

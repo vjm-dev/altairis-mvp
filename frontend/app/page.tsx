@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { hotelApi, bookingApi } from '@/lib/api';
-import SystemStatus from '@/components/system-status';
+import { hotelApi, bookingApi } from '@/shared/utils/api';
+import SystemStatus from '@/shared/components/system-status';
 
 export default function Dashboard() {
   const [stats, setStats] = useState({

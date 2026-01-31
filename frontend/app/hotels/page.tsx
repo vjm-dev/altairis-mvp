@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { hotelApi } from '@/lib/api';
+import { hotelApi } from '@/shared/utils/api';
 
 interface Hotel {
   id: number;

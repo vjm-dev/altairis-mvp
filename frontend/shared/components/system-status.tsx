@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { healthCheckService } from '@/lib/health-check';
+import { healthCheckService } from '@/shared/utils/health-check';
 
 interface SystemStatusProps {
   autoRefresh?: boolean;

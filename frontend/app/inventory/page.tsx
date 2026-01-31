@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { inventoryApi, hotelApi } from '@/lib/api';
+import { inventoryApi, hotelApi } from '@/shared/utils/api';
 
 export default function InventoryPage() {
   const [selectedHotel, setSelectedHotel] = useState<number>(0);

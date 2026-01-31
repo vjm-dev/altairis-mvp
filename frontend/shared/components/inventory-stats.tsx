@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { inventoryApi } from '@/lib/api';
+import { inventoryApi } from '@/shared/utils/api';
 
 interface InventoryStatsProps {
   hotelId: number;

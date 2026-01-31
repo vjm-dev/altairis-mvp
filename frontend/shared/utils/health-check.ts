@@ -1,4 +1,4 @@
-import { fetchApi } from "@/lib/api";
+import { fetchApi } from "@/shared/utils/api";
 
 interface HealthStatus {
   api: 'connected' | 'disconnected' | 'error';

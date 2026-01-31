@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { hotelApi, roomTypeApi } from '@/lib/api';
+import { hotelApi, roomTypeApi } from '@/shared/utils/api';
 import { useParams } from 'next/navigation';
-import InventoryStats from '@/components/inventory-stats';
-import DeleteHotelButton from '@/components/delete-hotel-button';
+import InventoryStats from '@/shared/components/inventory-stats';
+import DeleteHotelButton from '@/shared/components/delete-hotel-button';
 
 interface Hotel {
   id: number;

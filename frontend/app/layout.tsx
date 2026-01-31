@@ -1,6 +1,6 @@
 import { HOTEL_SYS_NAME, METADATA, COPYRIGHT_BANNER, SERVER_URL } from '@/data/content';
 import './globals.css';
-import ThemeProvider from '@/components/theme-provider';
+import ThemeProvider from '@/shared/components/theme-provider';
 
 export default function RootLayout({
   children,
