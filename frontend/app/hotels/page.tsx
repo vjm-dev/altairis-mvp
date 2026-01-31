@@ -132,9 +132,13 @@ export default function HotelsPage() {
                         >
                           Ver
                         </a>
-                        <button className="text-gray-600 hover:text-gray-800">
+                        |
+                        <a 
+                          href={`/hotels/${hotel.id}/edit`}
+                          className="text-blue-600 hover:text-blue-800 mr-3"
+                        >
                           Editar
-                        </button>
+                        </a>
                       </td>
                     </tr>
                   ))
