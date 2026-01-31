@@ -176,7 +176,7 @@ function RoomTypeManager({ hotelId, roomTypes, onRoomTypeCreated }: {
     name: '',
     description: '',
     basePrice: 100,
-    maxOccupancy: 2,
+    capacity: 2,
   });
   const [loading, setLoading] = useState(false);
 
@@ -190,7 +190,7 @@ function RoomTypeManager({ hotelId, roomTypes, onRoomTypeCreated }: {
       });
       onRoomTypeCreated();
       setShowForm(false);
-      setFormData({ name: '', description: '', basePrice: 100, maxOccupancy: 2 });
+      setFormData({ name: '', description: '', basePrice: 100, capacity: 2 });
     } catch (error) {
       console.error('Error creando tipo de habitación:', error);
       alert('Error al crear el tipo de habitación');
@@ -253,8 +253,8 @@ function RoomTypeManager({ hotelId, roomTypes, onRoomTypeCreated }: {
                   min="1"
                   required
                   className="w-full p-3 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                  value={formData.maxOccupancy}
-                  onChange={(e) => setFormData({ ...formData, maxOccupancy: Number(e.target.value) })}
+                  value={formData.capacity}
+                  onChange={(e) => setFormData({ ...formData, capacity: Number(e.target.value) })}
                 />
               </div>
             </div>
@@ -299,7 +299,7 @@ function RoomTypeManager({ hotelId, roomTypes, onRoomTypeCreated }: {
                   <td className="px-6 py-4 text-gray-900 dark:text-white font-medium">{roomType.name}</td>
                   <td className="px-6 py-4 text-gray-900 dark:text-white">{roomType.description || '-'}</td>
                   <td className="px-6 py-4 text-gray-900 dark:text-white">€{roomType.basePrice}</td>
-                  <td className="px-6 py-4 text-gray-900 dark:text-white">{roomType.maxOccupancy} personas</td>
+                  <td className="px-6 py-4 text-gray-900 dark:text-white">{roomType.capacity} personas</td>
                   <td className="px-6 py-4 text-gray-900 dark:text-white">
                     <button
                       onClick={async () => {

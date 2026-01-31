@@ -3,6 +3,9 @@ export interface RoomType {
   name: string;
   description: string;
   basePrice: number;
-  maxOccupancy: number;
+  capacity: number;
   hotelId: number;
+  isActive?: boolean;
+  availableRooms?: number;
+  hotelName?: string;
 }
