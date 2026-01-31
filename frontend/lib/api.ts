@@ -9,44 +9,82 @@ interface ApiError {
 }
 
 async function fetchApi(endpoint: string, options?: RequestInit) {
-  const response = await fetch(`${API_BASE}${endpoint}`, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    ...options,
-  });
+  try {
+    const response = await fetch(`${API_BASE}${endpoint}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      ...options,
+    });
 
-  if (!response.ok) {
+    console.log(`API Call: ${options?.method || 'GET'} ${endpoint}`, {
+      status: response.status,
+      statusText: response.statusText,
+      ok: response.ok,
+    });
+
+    if (response.status === 204) {
+      console.log(`204 No Content response for ${endpoint}`);
+      return null;
+    }
+
+    if (!response.ok) {
+      const contentType = response.headers.get('content-type');
+      
+      let errorText = '';
+      try {
+        errorText = await response.text();
+      } catch {
+        errorText = 'No se pudo obtener el mensaje de error';
+      }
+      
+      if (contentType && contentType.includes('application/json') && errorText) {
+        try {
+          const errorData: ApiError = JSON.parse(errorText);
+          let errorMessage = `Error ${response.status}: ${response.statusText}`;
+          
+          if (errorData.title) {
+            errorMessage += ` - ${errorData.title}`;
+          }
+          
+          if (errorData.errors) {
+            const errorDetails = Object.entries(errorData.errors)
+              .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
+              .join('; ');
+            errorMessage += ` [${errorDetails}]`;
+          }
+          
+          throw new Error(errorMessage);
+        } catch {
+          throw new Error(`API Error: ${response.status} - ${errorText}`);
+        }
+      } else {
+        throw new Error(`API Error: ${response.status} - ${errorText}`);
+      }
+    }
+
     const contentType = response.headers.get('content-type');
     if (contentType && contentType.includes('application/json')) {
       try {
-        var errorText = '';
-        const errorData: ApiError = await response.json();
-        let errorMessage = `API Error: ${response.status}`;
-        
-        if (errorData.title) {
-          errorMessage += ` - ${errorData.title}`;
+        const text = await response.text();
+        if (!text || text.trim() === '') {
+          console.log(`Empty response body for ${endpoint}, returning null`);
+          return null;
         }
-        
-        if (errorData.errors) {
-          const errorDetails = Object.entries(errorData.errors)
-            .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
-            .join('; ');
-          errorMessage += ` [${errorDetails}]`;
-        }
-        
-        throw new Error(errorMessage);
-      } catch {
-        errorText = await response.text();
-        throw new Error(`API Error: ${response.status} - ${errorText}`);
+        return JSON.parse(text);
+      } catch (parseError) {
+        console.error(`JSON parse error for ${endpoint}:`, parseError);
+        return null;
       }
-    } else {
-      errorText = await response.text();
-      throw new Error(`API Error: ${response.status} - ${errorText}`);
     }
-  }
 
-  return response.json();
+    const text = await response.text();
+    return text || null;
+
+  } catch (error) {
+    console.error(`fetchApi error for ${endpoint}:`, error);
+    throw error;
+  }
 }
 
 // Hotels
@@ -62,11 +100,23 @@ export const hotelApi = {
       body: JSON.stringify(data),
     }),
 
-  updateHotel: (id: number, data: any) => 
-    fetchApi(`/hotels/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify(data),
-    }),
+  updateHotel: async (id: number, data: any) => {
+    try {
+      const response = await fetchApi(`/hotels/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+      });
+      
+      if (response === null || response === undefined) {
+        return { success: true, message: 'Hotel actualizado correctamente' };
+      }
+      
+      return response;
+    } catch (error) {
+      console.error('Error in updateHotel:', error);
+      throw error;
+    }
+  },
 
   deleteHotel: (id: number) => 
     fetchApi(`/hotels/${id}`, {
