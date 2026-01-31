@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { hotelApi, bookingApi } from '@/lib/api';
+import SystemStatus from '@/components/system-status';
 
 export default function Dashboard() {
   const [stats, setStats] = useState({
@@ -63,49 +64,35 @@ export default function Dashboard() {
       <h1 className="text-3xl font-bold mb-6">Dashboard operativo</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold text-gray-700">Hoteles activos</h3>
-          <p className="text-3xl font-bold text-blue-700 mt-2">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">Hoteles activos</h3>
+          <p className="text-3xl font-bold text-blue-700 dark:text-blue-400 mt-2">
             {stats.totalHotels}
           </p>
           <a 
             href="/hotels" 
-            className="text-blue-600 hover:text-blue-800 text-sm mt-2 inline-block"
+            className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm mt-2 inline-block"
           >
             Ver todos →
           </a>
         </div>
         
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold text-gray-700">Reservas activas</h3>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">Reservas activas</h3>
           <p className="text-3xl font-bold text-green-700 mt-2">
             {stats.activeBookings}
           </p>
           <a 
             href="/bookings" 
-            className="text-blue-600 hover:text-blue-800 text-sm mt-2 inline-block"
+            className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-sm mt-2 inline-block"
           >
             Gestionar →
           </a>
         </div>
       </div>
       
-      <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-xl font-bold mb-4">Estado del sistema</h2>
-        <div className="space-y-2">
-          <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
-            <span>Backend API: Conectado</span>
-          </div>
-          <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
-            <span>Base de datos: Operativa</span>
-          </div>
-          <div className="text-sm text-gray-600 mt-4">
-            Última actualización: {new Date().toLocaleTimeString('es-ES')}
-          </div>
-        </div>
-      </div>
+      {/* System status */}
+      <SystemStatus />
     </div>
   );
 }
