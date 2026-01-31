@@ -8,7 +8,7 @@ interface ApiError {
   traceId?: string;
 }
 
-async function fetchApi(endpoint: string, options?: RequestInit) {
+export async function fetchApi(endpoint: string, options?: RequestInit) {
   try {
     const response = await fetch(`${API_BASE}${endpoint}`, {
       headers: {
