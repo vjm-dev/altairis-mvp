@@ -1,4 +1,4 @@
-import { HOTEL_SYS_NAME, METADATA, COPYRIGHT_BANNER, SERVER_URL } from '@/data/content';
+import { HOTEL_SYS_NAME, METADATA, COPYRIGHT_BANNER, SERVER_URL } from '@/shared/data/content';
 import './globals.css';
 import ThemeProvider from '@/shared/components/theme-provider';
 

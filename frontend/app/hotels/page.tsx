@@ -124,7 +124,7 @@ export default function HotelsPage() {
                         >
                           Ver
                         </a>
-                        |
+                        |&ensp;
                         <a 
                           href={`/hotels/${hotel.id}/edit`}
                           className="text-blue-600 hover:text-blue-800 mr-3"
