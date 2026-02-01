@@ -19,7 +19,7 @@ export default function RootLayout({
               <div className="flex justify-between items-center">
                 <div>
                   <h1 className="text-2xl font-bold text-blue-700 dark:text-blue-400">
-                    {HOTEL_SYS_NAME} - DEMO
+                    {HOTEL_SYS_NAME}
                   </h1>
                   <p className="text-gray-600 dark:text-gray-300">{METADATA.description}</p>
                 </div>
