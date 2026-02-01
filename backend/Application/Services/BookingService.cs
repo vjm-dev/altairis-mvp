@@ -130,7 +130,6 @@ namespace Altairis.Backend.Application.Services
                     if (inventory == null || !inventory.IsAvailable)
                         throw new ArgumentException($"No availability for {roomType.Name} on {date}");
 
-                    // Calcular habitaciones disponibles
                     var availableRooms = inventory.TotalRooms - inventory.ReservedRooms;
                     if (availableRooms < room.NumberOfRooms)
                         throw new ArgumentException($"Not enough rooms available for {roomType.Name} on {date}");
@@ -138,7 +137,12 @@ namespace Altairis.Backend.Application.Services
 
                 // Calculate price for the stay
                 var nights = dto.CheckOutDate.DayNumber - dto.CheckInDate.DayNumber;
-                var pricePerNight = roomType.BasePrice;
+                var firstNightPrice = await _context.Inventories
+                    .Where(i => i.RoomTypeId == room.RoomTypeId && i.Date == dto.CheckInDate)
+                    .Select(i => i.Price)
+                    .FirstOrDefaultAsync();
+
+                var pricePerNight = firstNightPrice > 0 ? firstNightPrice : roomType.BasePrice;
                 var subtotal = room.NumberOfRooms * pricePerNight * nights;
 
                 var bookingDetail = new BookingDetail
