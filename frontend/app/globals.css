@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: linear-gradient(#72cbff, #3eb8ff);
+  --background: linear-gradient(#72cbff, #3eb8ff, #008ee0);
   --foreground: #171717;
   --card-bg: #ffffff;
   --card-text: #374151;
@@ -19,7 +19,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: linear-gradient(#1e3a8a, #1e40af);
+    --background: linear-gradient(#304685, #1e40af, #00218f);
     --foreground: #f3f4f6;
     --card-bg: #1f2937;
     --card-text: #f9fafb;
@@ -31,9 +31,13 @@
 
 body {
   background: var(--background);
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
   color: var(--foreground);
   font-family: 'Segoe UI', Tahoma, Verdana, Helvetica, sans-serif;
-  min-height: 100vh;
+  min-height: 100%;
+  margin: 0;
 }
 
 .card {
