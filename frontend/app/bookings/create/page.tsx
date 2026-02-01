@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { bookingApi, hotelApi, roomTypeApi, inventoryApi } from '@/shared/utils/api';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function CreateBookingPage() {
   const router = useRouter();
@@ -217,12 +218,12 @@ export default function CreateBookingPage() {
           <h3 className="text-red-700 font-bold mb-1">Error</h3>
           <p className="text-red-600">{error}</p>
           {error.includes('inventario') && (
-            <a 
+            <Link 
               href={`/inventory?hotel=${formData.hotelId}`}
               className="text-blue-600 hover:text-blue-800 text-sm underline mt-2 inline-block"
             >
               Ir a configuración de inventario
-            </a>
+            </Link>
           )}
         </div>
       )}
@@ -506,7 +507,6 @@ export default function CreateBookingPage() {
                   <p>• {formData.numberOfRooms} habitación{formData.numberOfRooms !== 1 ? 'es' : ''} × {nights} noche{nights !== 1 ? 's' : ''}</p>
                   <p>• Precio por noche: €{pricePerNight.toFixed(2)}</p>
                   <p>• Total huéspedes: {formData.numberOfGuests}</p>
-                  <p>• El precio final lo calculará el sistema</p>
                   {!availability && (
                     <p className="bg-yellow-200 text-yellow-600 rounded-sm mt-2">
                       ⚠ El precio se basa en la tarifa base del tipo de habitación

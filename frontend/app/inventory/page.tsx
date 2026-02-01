@@ -1,10 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { inventoryApi, hotelApi } from '@/shared/utils/api';
+import { useSearchParams } from 'next/navigation';
 
-export default function InventoryPage() {
-  const [selectedHotel, setSelectedHotel] = useState<number>(0);
+function InventoryContent() {
+  const searchParams = useSearchParams();
+  const hotelFromUrl = searchParams.get('hotel');
+
+  const [selectedHotel, setSelectedHotel] = useState<number>(hotelFromUrl ? Number(hotelFromUrl) : 0);
   const [hotels, setHotels] = useState<any[]>([]);
   const [dateRange, setDateRange] = useState({
     startDate: new Date().toISOString().split('T')[0],
@@ -24,6 +28,15 @@ export default function InventoryPage() {
     try {
       const data = await hotelApi.getHotels(1, 100);
       setHotels(data.items || []);
+      
+      if (hotelFromUrl && data.items?.length > 0) {
+        const hotelExists = data.items.find((h: { id: number; }) => h.id === Number(hotelFromUrl));
+        if (hotelExists) {
+          setSelectedHotel(Number(hotelFromUrl));
+          return;
+        }
+      }
+      
       if (data.items?.length > 0) {
         setSelectedHotel(data.items[0].id);
       }
@@ -289,7 +302,7 @@ export default function InventoryPage() {
                         <div className="flex space-x-2">
                           <button
                             onClick={() => updateRoomCount(item.id, 1, item.price)}
-                            className="text-green-600 hover:text-green-800"
+                            className="text-green-700 hover:text-green-900"
                           >
                             + Habitación
                           </button>
@@ -346,5 +359,18 @@ export default function InventoryPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function InventoryPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex justify-center items-center h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-blue-700"></div>
+        <p className="ml-4 text-gray-600">Cargando parámetros...</p>
+      </div>
+    }>
+      <InventoryContent />
+    </Suspense>
   );
 }

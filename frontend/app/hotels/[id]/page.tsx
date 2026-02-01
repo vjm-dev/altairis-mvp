@@ -7,6 +7,7 @@ import InventoryStats from '@/shared/components/inventory-stats';
 import DeleteHotelButton from '@/shared/components/delete-hotel-button';
 import { Hotel } from '@/shared/interfaces/i_hotel';
 import { RoomType } from '@/shared/interfaces/i_roomtype';
+import Link from 'next/link';
 
 export default function HotelDetailPage() {
   const params = useParams();
@@ -153,12 +154,12 @@ export default function HotelDetailPage() {
             <p className="text-gray-600 mb-4">
               Configura la disponibilidad de habitaciones por fecha.
             </p>
-            <a
+            <Link
               href={`/inventory?hotel=${hotelId}`}
               className="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 inline-block"
             >
               Gestionar disponibilidad
-            </a>
+            </Link>
           </div>
         </div>
       )}
